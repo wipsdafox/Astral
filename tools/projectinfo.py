@@ -21,6 +21,8 @@
 from PyQt5 import *
 import os, sys
 from PyQt5.QtGui import QFont
+#from PyQt5.QtWebKitWidgets import QWebEngineView , QWebEnginePage
+#from PyQt5.QtWebKit import QWebEngineSettings
 
 if sys.version_info.major == 2:
     str = unicode    
@@ -34,7 +36,7 @@ class ProjectInfo(QtWidgets.QWidget):
         self.ContainerGrid.setMargin (0)
         self.ContainerGrid.setSpacing(0)
 
-        self.webkit = QtWebKit.QWebView()
+        self.webkit = QtWebKit.QWebEngineView()
         self.webkit.setHtml("""
             <h1>Example</h1>
             <p>whoa!</p>

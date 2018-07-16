@@ -15,7 +15,7 @@ This of course assumes that the sprites, images, and sounds you use can be distr
 * [Pygame](http://www.pygame.org/download.shtml) 
 
 On Ubuntu based:<br>
-`$ sudo apt-get install python2.7 python-qt4 pygame`
+`$ sudo apt-get install python2.7 python-qt5 python-pyqt5.qtwebengine pygame`
 
 On OSX you can install PyQt4 with homebrew:<br>
 `$ brew install qt`<br>

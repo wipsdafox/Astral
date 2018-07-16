@@ -115,13 +115,13 @@ class Inspector(QtWidgets.QWidget):
         if fileName:
             project_folder = os.path.dirname(self.main.projectdir)
             path = os.path.join(project_folder, 'sprites', fileName)
-            image = QtWidgets.QImage(path)
+            image = QtGui.QImage(path)
             if image.isNull():
                 QtWidgets.QMessageBox.information(self, "Image Viewer",
                         "Cannot load %s." % path)
                 return
 
-            self.imageLabel.setPixmap(QtWidgets.QPixmap.fromImage(image))
+            self.imageLabel.setPixmap(QtGui.QPixmap.fromImage(image))
             self.scaleFactor = 1.0
 
             self.information.setText("X: "+ str(image.width()) + "\nY: " + str(image.height()))

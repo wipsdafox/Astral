@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtCore, QtWidgets, QtGui
 import os, sys
 
 if sys.version_info.major == 2:
@@ -43,11 +43,11 @@ class ImageEditor(QtWidgets.QDialog):
         self.toolbar.addAction(self.normalSizeAct)
 
         self.ContainerGrid = QtWidgets.QGridLayout(self)
-        self.ContainerGrid.setMargin (0)
+        self.ContainerGrid.setContentsMargins (0, 0, 0, 0)
         self.ContainerGrid.setSpacing(0)
 
         self.imageLabel = QtWidgets.QLabel()
-        self.imageLabel.setBackgroundRole(QtWidgets.QPalette.Base)
+        self.imageLabel.setBackgroundRole(QtGui.QPalette.Base)
         self.imageLabel.setStyleSheet('background-image: url(../images/transparent.png);')
         self.imageLabel.setSizePolicy(QtWidgets.QSizePolicy.Ignored,
                 QtWidgets.QSizePolicy.Ignored)
@@ -55,7 +55,7 @@ class ImageEditor(QtWidgets.QDialog):
         self.open_image(filename)
 
         self.scrollArea = QtWidgets.QScrollArea()
-        self.scrollArea.setBackgroundRole(QtWidgets.QPalette.Dark)
+        self.scrollArea.setBackgroundRole(QtGui.QPalette.Dark)
         self.scrollArea.setWidget(self.imageLabel)
 
         self.widgetloco = QtWidgets.QWidget()
@@ -83,13 +83,13 @@ class ImageEditor(QtWidgets.QDialog):
     def open_image(self, filename):
         fileName = filename
         if fileName:
-            image = QtWidgets.QImage(fileName)
+            image = QtGui.QImage(fileName)
             if image.isNull():
                 QtWidgets.QMessageBox.information(self, "Image Viewer",
                         "Cannot load %s." % fileName)
                 return
 
-            self.imageLabel.setPixmap(QtWidgets.QPixmap.fromImage(image))
+            self.imageLabel.setPixmap(QtGui.QPixmap.fromImage(image))
             self.scaleFactor = 1.0
 
             if not self.fitToWindowAct.isChecked():

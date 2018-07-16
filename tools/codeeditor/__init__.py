@@ -1,12 +1,13 @@
 import sys
 import os
 from PyQt5 import *
+from PyQt5.QtWebEngineWidgets import QWebEngineView
 
 class CodeEditor(QtWidgets.QDialog):
     def __init__(self, main, current_file):
         super(CodeEditor, self).__init__(main)
         self.main = main
-        self.webkit = QtWebKit.QWebView()
+        self.webkit = QtWebEngineWidgets.QWebEngineView()
         self.realpath = os.path.dirname(os.path.realpath(__file__))
 
         self.current_file = current_file
