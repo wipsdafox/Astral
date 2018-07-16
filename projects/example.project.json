@@ -17,19 +17,8 @@
     "rooms": {
         "room_1": "room_1.room.json"
     }, 
-    "scripts": {
-        "Test": "Test.py", 
-        "aaa": "aaa.py", 
-        "eoghrg": "eoghrg.py", 
-        "goeuhg[wurehg[suh": "goeuhg[wurehg[suh.py", 
-        "guheirthigs": "guheirthigs.py", 
-        "hguhsrpiuhg": "hguhsrpiuhg.py", 
-        "iurhgisrghosy": "iurhgisrghosy.py", 
-        "kshigsuhrtg": "kshigsuhrtg.py", 
-        "test": "test.py", 
-        "test_script": "movement.py", 
-        "uhrgur": "uhrgur.py", 
-        "why": "scripts/why.py"
+    "scripts": { 
+        "test_script": "movement.py"
     }, 
     "settings": {
         "display_cursor": true, 

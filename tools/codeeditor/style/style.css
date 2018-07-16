@@ -1,10 +1,9 @@
 @font-face {
-	font-family: Consolas;
-	src: url(fonts/consola.ttf);
+	font-family: monospace;
 	font-weight:400;
 }
 *{
-	font-family: Consolas;
+	font-family: monospace;
 }
 body, html{
 	margin:0;
