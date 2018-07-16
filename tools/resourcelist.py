@@ -101,8 +101,6 @@ class ResourceList(QtWidgets.QTreeWidget):
 			json.dump(data, f, sort_keys=True, indent=4)
 		project_folder = self.main.projectdir
 
-		open(project_folder+'/'+ section +'/'+ value, 'a').close()
-
 	def DeleteResource(self):
 		index = self.currentItem()
 
@@ -191,7 +189,14 @@ class ResourceList(QtWidgets.QTreeWidget):
 		print("TO DO")
 
 	def add_file(self):
-		print("TO DO")
+		text, ok = QtWidgets.QInputDialog.getText(self, 'Create File', 
+			'File Path:')
+		text = str(text)
+		if ok:
+			item = QtWidgets.QTreeWidgetItem(self)
+			item.setIcon(0, QtGui.QIcon(self.main.file_sprite))
+			item.setText(0, text)
+			self.CreateResource(text, "", text)
 
 	def add_directory(self):
 		print("TO DO")
