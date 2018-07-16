@@ -39,8 +39,6 @@ class ResourceList(QtWidgets.QTreeWidget):
 		self.read_section("scripts", "Scripts")
 		self.read_section("objects", "Objects")
 		self.read_section("rooms", "Rooms")
-		self.AddItem("Extensions", self.main.extension_sprite)
-		self.AddItem("Settings", self.main.settings_sprite)
 	
 	def show_project_name(self):
 		item = QtWidgets.QTreeWidgetItem(self)
@@ -58,34 +56,11 @@ class ResourceList(QtWidgets.QTreeWidget):
 	def contextMenuEvent(self, event):
 		menu = QtWidgets.QMenu(self)
 		item = self.currentItem().text(0)
-		newscraction = QtWidgets.QAction(QtGui.QIcon('images/new.png'), "New script", self)
-		newscraction.triggered.connect(self.NewScript)
 		deleteaction = QtWidgets.QAction(QtGui.QIcon('images/close.png'), "Delete " + item, self)
 		deleteaction.triggered.connect(self.DeleteResource)
-		try:
-			if self.currentItem().parent().text(0) == "Scripts": 
-				menu.addAction(newscraction)
-		except:
-			if self.currentItem().text(0) == "Scripts": 
-				menu.addAction(newscraction)
-		
-		try: #checking if it's a main group
-			if self.currentItem().parent().text(0):
-				menu.addAction(deleteaction)
-		except:
-			print "No delete here"
+		menu.addAction(deleteaction)
 		menu.popup(event.globalPos())
 		event.accept()
-
-	def NewScript(self):
-		text, ok = QtWidgets.QInputDialog.getText(self, 'Create Script', 
-			'Script name:')
-		text = str(text)
-		if ok:
-			item = QtWidgets.QTreeWidgetItem(self)
-			item.setIcon(0, QtGui.QIcon(self.main.file_sprite))
-			item.setText(0, text)
-			self.CreateResource(text, "scripts", text+".py")
 
 	def CreateResource(self, text, section, value):
 		#self.AddItem(text, "file")
@@ -134,11 +109,12 @@ class ResourceList(QtWidgets.QTreeWidget):
 		project_folder = os.path.dirname(self.main.projectdir)
 		
 		for folder in self.folders:
-			print(self.item_index[resource_name])
-			print(folder)
-			if self.item_index[resource_name] == folder:
-				path = os.path.join(project_folder, folder, resource_name)
-				self.open_tab(path, resource_name, folder)
+			try:
+				if self.item_index[resource_name] == folder:
+					path = os.path.join(project_folder, folder, resource_name)
+					self.open_tab(path, resource_name, folder)
+			except:
+				print("Can't open folders as files!")
 	   
 	def open_tab(self, path, name, type):
 		if type == "sprites":

@@ -3,9 +3,8 @@
         "import": "os, sys"
     }, 
     "objects": {
-        "obj_player": "obj_player.object.json", 
         "obj_test": "obj_test.object.json", 
-        "obj_wall": "obj_wall.object.json"
+        "obj_wall": "obj_player.object.json"
     }, 
     "project": {
         "author": "Emilio Coppola", 
@@ -17,7 +16,7 @@
     "rooms": {
         "room_1": "room_1.room.json"
     }, 
-    "scripts": { 
+    "scripts": {
         "test_script": "movement.py"
     }, 
     "settings": {
