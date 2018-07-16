@@ -41,7 +41,7 @@ class DocReader(QtWidgets.QDialog):
 
 
         self.ContainerGrid = QtWidgets.QGridLayout(self)
-        self.ContainerGrid.setMargin (0)
+        self.ContainerGrid.setContentsMargins(0, 0, 0, 0)
         self.ContainerGrid.setSpacing(0)
 
         self.webkit = QtWebKit.QWebEngineView()

@@ -18,8 +18,7 @@
         "room_1": "room_1.room.json"
     }, 
     "scripts": {
-        "movement": "movement.py", 
-        "test_script": "test_script.py"
+        "test_script": "movement.py"
     }, 
     "settings": {
         "display_cursor": true, 

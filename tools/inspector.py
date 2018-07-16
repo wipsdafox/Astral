@@ -68,7 +68,7 @@ class Inspector(QtWidgets.QWidget):
         #locating the key
         for section in data:
             if section == parent:
-                for value in data[section]:
+                for value in data[section].keys():
                     if value == self.last_name:
                         data[section][new_name] = data[section][value]
                         del data[section][value]

@@ -276,7 +276,7 @@ class ScriptEditor(QtWidgets.QDialog):
         self.font.setPointSize(int(13))
 
         self.ContainerGrid = QtWidgets.QGridLayout(self)
-        self.ContainerGrid.setMargin (0)
+        self.ContainerGrid.setContentsMargins(0, 0, 0, 0)
         self.ContainerGrid.setSpacing(0)
 
         self.textedit = QtWidgets.QTextEdit()
