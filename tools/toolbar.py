@@ -1,11 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from PyQt4 import QtCore, QtGui
+from PyQt5 import QtCore, QtWidgets, QtGui
 import os, sys, subprocess
 import docreader
 
-class ToolBar(QtGui.QToolBar):
+class ToolBar(QtWidgets.QToolBar):
     def __init__(self, main):
         super(ToolBar, self).__init__(main)
         self.main = main
@@ -19,18 +19,18 @@ class ToolBar(QtGui.QToolBar):
             #[self.open_documentation, 'documentation.png', 'Documentation', 'F1'],
             [self.toggle_console, 'output.png', 'Show output', False],
             [self.run_project, 'run.png', 'Run', 'Ctrl+B'],
-            [QtGui.qApp.quit, 'close.png', 'Exit', 'Ctrl+Q']
+            [QtWidgets.qApp.quit, 'close.png', 'Exit', 'Ctrl+Q']
         ]
 
         for i,x in enumerate(funcs):
-            action = QtGui.QAction(QtGui.QIcon(os.path.join('images', x[1])), x[2], self)
+            action = QtWidgets.QAction(QtGui.QIcon(os.path.join('images', x[1])), x[2], self)
             action.triggered.connect(x[0])
             if x[3]!=False:
                 action.setShortcut(x[3])
             self.addAction(action)
             if i == 5:
-                spacer = QtGui.QWidget() 
-                spacer.setSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding) 
+                spacer = QtWidgets.QWidget() 
+                spacer.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding) 
                 self.addWidget(spacer)
                 #self.separator = self.addSeparator()
 
@@ -43,13 +43,13 @@ class ToolBar(QtGui.QToolBar):
 
     def open(self):
         if self.main.mode == "eel-game":
-            target = str(QtGui.QFileDialog.getOpenFileName(self, "Open project", "/projects/", "*project.json"))
+            target = str(QtWidgets.QFileDialog.getOpenFileName(self, "Open project", "/projects/", "*project.json"))
             if target:
                 self.root = self.main.resourcelist.fileSystemModel.setRootPath(target)
                 self.main.resourcelist.setRootIndex(self.root)
                 self.main.projectdir = target
         else:
-            target = str(QtGui.QFileDialog.getExistingDirectory(self, "Select Directory"))
+            target = str(QtWidgets.QFileDialog.getExistingDirectory(self, "Select Directory"))
             if target:
                 self.root = self.main.resourcelist.fileSystemModel.setRootPath(target)
                 self.main.resourcelist.setRootIndex(self.root)
@@ -73,7 +73,7 @@ class ToolBar(QtGui.QToolBar):
                 out = python.stdout.read()
 
             self.main.output.setText(out)
-            self.main.output.moveCursor(QtGui.QTextCursor.End)
+            self.main.output.moveCursor(QtWidgets.QTextCursor.End)
             self.main.statusBar().showMessage('Done!', 2000)
         else:
             if self.main.mode == "python":

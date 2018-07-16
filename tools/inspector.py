@@ -1,43 +1,43 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from PyQt4 import QtCore, QtGui
+from PyQt5 import QtCore, QtWidgets, QtGui
 import os, sys, shutil, json
 
-class Inspector(QtGui.QWidget):
+class Inspector(QtWidgets.QWidget):
     def __init__(self, main, image = None):
         super(Inspector, self).__init__(main)
         self.main = main
         self.image = image
-        self.title = QtGui.QLabel("<h3>Inspector</h3>")
-        self.nameEdit = QtGui.QLineEdit()
+        self.title = QtWidgets.QLabel("<h3>Inspector</h3>")
+        self.nameEdit = QtWidgets.QLineEdit()
         self.nameEdit.textChanged.connect(self.on_name_changed)
         self.nameEdit.setPlaceholderText("Name")
         self.nameEdit.setMinimumWidth(150)
 
-        self.information = QtGui.QLabel("")
+        self.information = QtWidgets.QLabel("")
 
         #IMAGE
-        self.fitToWindowAct = QtGui.QAction("&Fit to Window", self,
+        self.fitToWindowAct = QtWidgets.QAction("&Fit to Window", self,
                 enabled=False, checkable=True, shortcut="Ctrl+F",
                 triggered=self.fitToWindow)
-        self.importButton = QtGui.QPushButton('&Import', self)
+        self.importButton = QtWidgets.QPushButton('&Import', self)
         self.importButton.clicked.connect(self.importImage)
         
-        self.imageLabel = QtGui.QLabel()
+        self.imageLabel = QtWidgets.QLabel()
         self.imageLabel.setBackgroundRole(QtGui.QPalette.Base)
         self.imageLabel.setStyleSheet('background-image: url(../images/transparent.png);')
-        self.imageLabel.setSizePolicy(QtGui.QSizePolicy.Ignored,
-                QtGui.QSizePolicy.Ignored)
+        self.imageLabel.setSizePolicy(QtWidgets.QSizePolicy.Ignored,
+                QtWidgets.QSizePolicy.Ignored)
         self.imageLabel.setScaledContents(True)
         
-        self.scrollArea = QtGui.QScrollArea()
+        self.scrollArea = QtWidgets.QScrollArea()
         self.scrollArea.setBackgroundRole(QtGui.QPalette.Dark)
         self.scrollArea.setWidget(self.imageLabel)
         self.scrollArea.hide()
         
-        self.ContainerGrid = QtGui.QGridLayout(self)
-        self.ContainerGrid.setMargin (10)
+        self.ContainerGrid = QtWidgets.QGridLayout(self)
+        self.ContainerGrid.setContentsMargins(10, 0, 0, 0)
         self.ContainerGrid.setSpacing(10)
         
         
@@ -48,9 +48,9 @@ class Inspector(QtGui.QWidget):
         self.ContainerGrid.addWidget(self.scrollArea, 4, 0)
         
 
-        self.spacer = QtGui.QWidget() 
-        self.spacer.setSizePolicy(QtGui.QSizePolicy.Expanding,
-                                    QtGui.QSizePolicy.Expanding) 
+        self.spacer = QtWidgets.QWidget() 
+        self.spacer.setSizePolicy(QtWidgets.QSizePolicy.Expanding,
+                                    QtWidgets.QSizePolicy.Expanding) 
         self.ContainerGrid.addWidget(self.spacer)
 
         self.setLayout(self.ContainerGrid)
@@ -85,7 +85,7 @@ class Inspector(QtGui.QWidget):
 
 
     def importImage(self):
-        fname = QtGui.QFileDialog.getOpenFileName(self, 'Open file', 
+        fname = QtWidgets.QFileDialog.getOpenFileName(self, 'Open file', 
                 '', "*.png")
         if fname:
             self.open_image(fname)
@@ -115,13 +115,13 @@ class Inspector(QtGui.QWidget):
         if fileName:
             project_folder = os.path.dirname(self.main.projectdir)
             path = os.path.join(project_folder, 'sprites', fileName)
-            image = QtGui.QImage(path)
+            image = QtWidgets.QImage(path)
             if image.isNull():
-                QtGui.QMessageBox.information(self, "Image Viewer",
+                QtWidgets.QMessageBox.information(self, "Image Viewer",
                         "Cannot load %s." % path)
                 return
 
-            self.imageLabel.setPixmap(QtGui.QPixmap.fromImage(image))
+            self.imageLabel.setPixmap(QtWidgets.QPixmap.fromImage(image))
             self.scaleFactor = 1.0
 
             self.information.setText("X: "+ str(image.width()) + "\nY: " + str(image.height()))

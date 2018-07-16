@@ -18,19 +18,19 @@
 # You should have received a copy of the GNU General Public License
 # along with Stellar.  If not, see <http://www.gnu.org/licenses/>.
 
-from PyQt4 import QtCore, QtGui, QtWebKit
+from PyQt5 import *
 import os, sys
-from PyQt4.QtGui import QFont
+from PyQt5.QtGui import QFont
 
 if sys.version_info.major == 2:
     str = unicode    
 
-class ProjectInfo(QtGui.QWidget):
+class ProjectInfo(QtWidgets.QWidget):
     def __init__(self, main):
         super(ProjectInfo, self).__init__(main)
         self.main = main
 
-        self.ContainerGrid = QtGui.QGridLayout(self)
+        self.ContainerGrid = QtWidgets.QGridLayout(self)
         self.ContainerGrid.setMargin (0)
         self.ContainerGrid.setSpacing(0)
 

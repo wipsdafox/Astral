@@ -1,14 +1,14 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from PyQt4 import QtCore, QtGui
-from PyQt4.QtGui import QFont
+from PyQt5 import QtCore, QtWidgets, QtGui
+#from PyQt5.QtGui import QFont
 import os, sys, shutil
 import json
 import imageviewer
 import codeeditor
 
-class ResourceList(QtGui.QTreeWidget):
+class ResourceList(QtWidgets.QTreeWidget):
     def __init__(self, main):
         super(ResourceList, self).__init__(main)
         self.main = main
@@ -44,8 +44,8 @@ class ResourceList(QtGui.QTreeWidget):
         self.AddItem("Settings", self.main.settings_sprite)
     
     def show_project_name(self):
-        item = QtGui.QTreeWidgetItem(self)
-        item.setIcon(0, self.main.icon)
+        item = QtWidgets.QTreeWidgetItem(self)
+        #item.setIcon(0, self.main.icon)
         project_name = "Example"
         item.setText(0, project_name)
         self.item_index[str(project_name)]="project_overview"
@@ -57,11 +57,11 @@ class ResourceList(QtGui.QTreeWidget):
         item.setFont(0, self.font)
     
     def contextMenuEvent(self, event):
-        menu = QtGui.QMenu(self)
+        menu = QtWidgets.QMenu(self)
         item = self.currentItem().text(0)
-        newscraction = QtGui.QAction(QtGui.QIcon('images/new.png'), "New script", self)
+        newscraction = QtWidgets.QAction(QtGui.QIcon('images/new.png'), "New script", self)
         newscraction.triggered.connect(self.NewScript)
-        deleteaction = QtGui.QAction(QtGui.QIcon('images/close.png'), "Delete " + item, self)
+        deleteaction = QtWidgets.QAction(QtGui.QIcon('images/close.png'), "Delete " + item, self)
         deleteaction.triggered.connect(self.DeleteResource)
         try:
             if self.currentItem().parent().text(0) == "Scripts": 
@@ -79,11 +79,11 @@ class ResourceList(QtGui.QTreeWidget):
         event.accept()
 
     def NewScript(self):
-        text, ok = QtGui.QInputDialog.getText(self, 'Create Script', 
+        text, ok = QtWidgets.QInputDialog.getText(self, 'Create Script', 
             'Script name:')
         text = str(text)
         if ok:
-            item = QtGui.QTreeWidgetItem(self)
+            item = QtWidgets.QTreeWidgetItem(self)
             item.setIcon(0, QtGui.QIcon(self.main.file_sprite))
             item.setText(0, text)
             self.CreateResource(text, "scripts", text+".py")
@@ -108,10 +108,10 @@ class ResourceList(QtGui.QTreeWidget):
         index = self.currentItem()
 
         dl_msg = "Are you sure you want to delete \"" + index.text(0) + "\"?"
-        reply = QtGui.QMessageBox.question(self, 'Delete Resource', 
-                         dl_msg, QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+        reply = QtWidgets.QMessageBox.question(self, 'Delete Resource', 
+                         dl_msg, QtWidgets.QMessageBox.Yes, QtWidgets.QMessageBox.No)
 
-        if reply == QtGui.QMessageBox.Yes:
+        if reply == QtWidgets.QMessageBox.Yes:
             print index.text(0)
             print index.parent().text(0)
         else:
@@ -152,20 +152,21 @@ class ResourceList(QtGui.QTreeWidget):
         window.setVisible(True)
 
     def AddItem(self, name, icon):
-        item = QtGui.QTreeWidgetItem(self)
+        item = QtWidgets.QTreeWidgetItem(self)
         if str(icon) == "file":
             item.setIcon(0, QtGui.QIcon(self.main.file_sprite))
         else:
             item.setIcon(0, QtGui.QIcon(icon))
+            useless = 0
         item.setText(0, name)
 
     def read_section(self, section, name):
-        item = QtGui.QTreeWidgetItem(self)
+        item = QtWidgets.QTreeWidgetItem(self)
         item.setExpanded(True)
         item.setIcon(0, QtGui.QIcon(self.main.folder_sprite))
         item.setText(0, name)
         for i in self.data[section]:
-            subitem = QtGui.QTreeWidgetItem()
+            subitem = QtWidgets.QTreeWidgetItem()
             subitem.setText(0, str(i))
             icon_path = os.path.dirname(self.main.projectdir) + '/sprites/' +  str(self.data[section][i])
             if os.path.isfile(icon_path):

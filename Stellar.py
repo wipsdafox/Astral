@@ -1,8 +1,9 @@
 #!/usr/bin/python
 # -= coding: utf-8 =-
+#fuck pyqt5
 
 import sys, os, subprocess
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtWidgets, QtCore, QtGui
 sys.path.append("tools")
 import resourcelist
 import inspector
@@ -10,7 +11,7 @@ import toolbar
 import projectinfo
 import ConfigParser
 
-class MainWindow(QtGui.QMainWindow):
+class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()#parent=None, flags=QtCore.Qt.FramelessWindowHint)
         self.read_settings()
@@ -30,7 +31,7 @@ class MainWindow(QtGui.QMainWindow):
             return font
         
         def set_output():
-            output = QtGui.QTextEdit()
+            output = QtWidgets.QTextEdit()
             output.setReadOnly(True)
             output.setFont(self.font)
             return output
@@ -41,7 +42,7 @@ class MainWindow(QtGui.QMainWindow):
         
         self.mdi_area = self.create_mdi_area()
         
-        self.splitter = QtGui.QSplitter(QtCore.Qt.Horizontal)
+        self.splitter = QtWidgets.QSplitter(QtCore.Qt.Horizontal)
         self.splitter.addWidget(self.resourcelist)
         self.splitter.addWidget(self.mdi_area)
         
@@ -61,7 +62,7 @@ class MainWindow(QtGui.QMainWindow):
     def create_toolbar(self, type):
         if type == "right":
             self.inspector = inspector.Inspector(self)
-            inspectorToolbar = QtGui.QToolBar()
+            inspectorToolbar = QtWidgets.QToolBar()
             inspectorToolbar.addWidget(self.inspector)
             self.addToolBar(QtCore.Qt.RightToolBarArea, inspectorToolbar)
             
@@ -69,7 +70,7 @@ class MainWindow(QtGui.QMainWindow):
             self.addToolBar(toolbar.ToolBar(self))
         
     def create_mdi_area(self):
-        mdi = QtGui.QMdiArea()
+        mdi = QtWidgets.QMdiArea()
 
         if self.tabbed_view:
             mdi.setViewMode(mdi.TabbedView)
@@ -108,9 +109,9 @@ class MainWindow(QtGui.QMainWindow):
         self.treeview_icon_size = int(config.get('treeview', 'icon_size'))
 
 def main():
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     Stellar = MainWindow()
-    Stellar.setStyle(QtGui.QStyleFactory.create(Stellar.qt_style))
+    Stellar.setStyle(QtWidgets.QStyleFactory.create(Stellar.qt_style))
     Stellar.setWindowIcon(Stellar.icon)
     with open(os.path.join(Stellar.theme_dir, Stellar.theme_name + '.css')) as file:
         Stellar.setStyleSheet(file.read())

@@ -18,14 +18,14 @@
 # You should have received a copy of the GNU General Public License
 # along with Stellar.  If not, see <http://www.gnu.org/licenses/>.
 
-from PyQt4 import QtCore, QtGui, QtWebKit
+from PyQt5 import *
 import os, sys
-from PyQt4.QtGui import QFont
+from PyQt5.QtGui import QFont
 
 if sys.version_info.major == 2:
     str = unicode    
 
-class DocReader(QtGui.QDialog):
+class DocReader(QtWidgets.QDialog):
     def __init__(self, main):
         super(DocReader, self).__init__(main)
         self.main = main
@@ -35,10 +35,10 @@ class DocReader(QtGui.QDialog):
         else:
         	img_path=os.path.join('images')
 
-        self.toolbar = QtGui.QToolBar('Documentation Toolbar')
+        self.toolbar = QtWidgets.QToolBar('Documentation Toolbar')
 
 
-        self.ContainerGrid = QtGui.QGridLayout(self)
+        self.ContainerGrid = QtWidgets.QGridLayout(self)
         self.ContainerGrid.setMargin (0)
         self.ContainerGrid.setSpacing(0)
 
@@ -53,14 +53,14 @@ class DocReader(QtGui.QDialog):
         self.webkit.load(QtCore.QUrl(url))
         self.webkit.show()
 
-class Editor(QtGui.QMainWindow):
+class Editor(QtWidgets.QMainWindow):
     def __init__(self):
         super(Editor, self).__init__()
         target="none"
         pathtofile="stellar.png"
 
-        self.ShowFrame = QtGui.QFrame()
-        self.showlayout = QtGui.QGridLayout()
+        self.ShowFrame = QtWidgets.QFrame()
+        self.showlayout = QtWidgets.QGridLayout()
         self.showlayout.setMargin(0)
 
         self.docreader = DocReader(self, target, pathtofile)
@@ -73,7 +73,7 @@ class Editor(QtGui.QMainWindow):
         self.resize(640, 480)
 
 if __name__ == "__main__":
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     mainWin = Editor()
     mainWin.show()
     mainWin.raise_() #Making the window get focused on OSX

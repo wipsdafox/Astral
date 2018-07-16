@@ -1,9 +1,8 @@
 import sys
 import os
-from PyQt4 import QtCore, QtGui, QtWebKit
-from PyQt4.QtWebKit import QWebSettings
+from PyQt5 import *
 
-class CodeEditor(QtGui.QDialog):
+class CodeEditor(QtWidgets.QDialog):
     def __init__(self, main, current_file):
         super(CodeEditor, self).__init__(main)
         self.main = main
@@ -46,16 +45,16 @@ class CodeEditor(QtGui.QDialog):
         url = url.replace("\\", "/")
         self.webkit.load(QtCore.QUrl(url))
 
-        self.ContainerGrid = QtGui.QGridLayout(self)
+        self.ContainerGrid = QtWidgets.QGridLayout(self)
         self.ContainerGrid.setMargin (0)
         self.ContainerGrid.setSpacing(0)
         self.ContainerGrid.addWidget(self.webkit)
         self.setLayout(self.ContainerGrid)
 
-        #saveAction = QtGui.QAction(QtGui.QIcon(), '&Save', self)        
+        #saveAction = QtWidgets.QAction(QtGui.QIcon(), '&Save', self)        
         #saveAction.setShortcut('Ctrl+S')
         #saveAction.triggered.connect(self.save)
-        QtGui.QShortcut(QtGui.QKeySequence("Ctrl+S"), self, self.save)
+        QtWidgets.QShortcut(QtWidgets.QKeySequence("Ctrl+S"), self, self.save)
 
     def save(self):
         jscript = "editor.getValue();"     
@@ -70,7 +69,7 @@ class CodeEditor(QtGui.QDialog):
                 print e
 
 if __name__ == "__main__":
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     mainWin = CodeEditor("C:\\Users\\Loremi\\Documents\\GitHub\\Stellar\\Stellar.py")
     mainWin.show()
     mainWin.raise_() #Making the window get focused on OSX

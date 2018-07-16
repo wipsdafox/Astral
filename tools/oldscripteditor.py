@@ -18,27 +18,27 @@
 # You should have received a copy of the GNU General Public License
 # along with Stellar.  If not, see <http://www.gnu.org/licenses/>.
 
-from PyQt4 import QtCore, QtGui
+from PyQt5 import QtCore, QtWidgets
 import os, sys
-from PyQt4.QtGui import QFont
+from PyQt5.QtGui import QFont
 import json
 
 
 if sys.version_info.major == 2:
     str = unicode   
 
-class PythonHighlighter(QtGui.QSyntaxHighlighter):
+class PythonHighlighter(QtWidgets.QSyntaxHighlighter):
     def __init__(self, parent=None):
         super(PythonHighlighter, self).__init__(parent)
-        self.color_0 = QtGui.QColor(249, 38,  144)
-        self.color_1 = QtGui.QColor(102, 217, 239)
-        self.color_2 = QtGui.QColor(117, 113, 94 )#comments
-        self.color_3 = QtGui.QColor(230, 219, 102)
-        self.color_4 = QtGui.QColor(166,226,46)
-        self.color_5 = QtGui.QColor(174,129,255)
-        self.color_6 = QtGui.QColor(253,151,32)
+        self.color_0 = QtWidgets.QColor(249, 38,  144)
+        self.color_1 = QtWidgets.QColor(102, 217, 239)
+        self.color_2 = QtWidgets.QColor(117, 113, 94 )#comments
+        self.color_3 = QtWidgets.QColor(230, 219, 102)
+        self.color_4 = QtWidgets.QColor(166,226,46)
+        self.color_5 = QtWidgets.QColor(174,129,255)
+        self.color_6 = QtWidgets.QColor(253,151,32)
 
-        keywordFormat = QtGui.QTextCharFormat()
+        keywordFormat = QtWidgets.QTextCharFormat()
         keywordFormat.setForeground(self.color_0)
         keywordPatterns = keywords = [
             "\\band\\b",       "\\bdel\\b",       "\\bfor\\b",       "\\bis\\b",        "\\braise\\b",
@@ -52,24 +52,24 @@ class PythonHighlighter(QtGui.QSyntaxHighlighter):
         self.highlightingRules = [(QtCore.QRegExp(pattern), keywordFormat)
                 for pattern in keywordPatterns]
 
-        classFormat = QtGui.QTextCharFormat()
+        classFormat = QtWidgets.QTextCharFormat()
         classFormat.setForeground(self.color_4)
         self.highlightingRules.append((QtCore.QRegExp("\\bQ[A-Za-z]+\\b"),
                 classFormat))
 
-        numberFormat = QtGui.QTextCharFormat()
+        numberFormat = QtWidgets.QTextCharFormat()
         numberFormat.setForeground(self.color_5)
         numberPatterns = ['\\b[+-]?[0-9]+[lL]?\\b', '\\b[+-]?0[xX][0-9A-Fa-f]+[lL]?\\b',
         '\\b[+-]?[0-9]+(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?\\b', '\\btrue\\b', '\\bfalse\\b']
         self.highlightingRules += [(QtCore.QRegExp(pattern), numberFormat)
                 for pattern in numberPatterns]
 
-        singleLineCommentFormat = QtGui.QTextCharFormat()
+        singleLineCommentFormat = QtWidgets.QTextCharFormat()
         singleLineCommentFormat.setForeground(self.color_2)
         self.highlightingRules.append((QtCore.QRegExp("#[^\n]*"),
                 singleLineCommentFormat))
 
-        quotationFormat = QtGui.QTextCharFormat()
+        quotationFormat = QtWidgets.QTextCharFormat()
         quotationFormat.setForeground(self.color_3)
         self.highlightingRules.append((QtCore.QRegExp("\".*\""),
                 quotationFormat))
@@ -77,7 +77,7 @@ class PythonHighlighter(QtGui.QSyntaxHighlighter):
         self.highlightingRules.append((QtCore.QRegExp("\'.*\'"),
                 quotationFormat))
 
-        functionFormat = QtGui.QTextCharFormat()
+        functionFormat = QtWidgets.QTextCharFormat()
         functionFormat.setForeground(self.color_1)
         self.highlightingRules.append((QtCore.QRegExp("\\b[A-Za-z0-9_]+(?=\\()"),
                 functionFormat))
@@ -116,18 +116,18 @@ class PythonHighlighter(QtGui.QSyntaxHighlighter):
 
 
 
-class EELHighlighter(QtGui.QSyntaxHighlighter):
+class EELHighlighter(QtWidgets.QSyntaxHighlighter):
     def __init__(self, parent=None):
         super(EELHighlighter, self).__init__(parent)
-        self.color_0 = QtGui.QColor(249, 38,  144)
-        self.color_1 = QtGui.QColor(102, 217, 239)
-        self.color_2 = QtGui.QColor(117, 113, 94 )#comments
-        self.color_3 = QtGui.QColor(230, 219, 102)
-        self.color_4 = QtGui.QColor(166,226,46)
-        self.color_5 = QtGui.QColor(174,129,255)
-        self.color_6 = QtGui.QColor(253,151,32)
+        self.color_0 = QtWidgets.QColor(249, 38,  144)
+        self.color_1 = QtWidgets.QColor(102, 217, 239)
+        self.color_2 = QtWidgets.QColor(117, 113, 94 )#comments
+        self.color_3 = QtWidgets.QColor(230, 219, 102)
+        self.color_4 = QtWidgets.QColor(166,226,46)
+        self.color_5 = QtWidgets.QColor(174,129,255)
+        self.color_6 = QtWidgets.QColor(253,151,32)
 
-        group1Format = QtGui.QTextCharFormat()
+        group1Format = QtWidgets.QTextCharFormat()
         group1Format.setForeground(self.color_0)
         group1Patterns = ["\\bimport\\b", '\\bif\\b', '\\belse\\b',
                           "\\bfor\\b", "\\bswitch\\b" , "\\bcase\\b",
@@ -138,7 +138,7 @@ class EELHighlighter(QtGui.QSyntaxHighlighter):
                 for pattern in group1Patterns]
 
 
-        keywordFormat = QtGui.QTextCharFormat()
+        keywordFormat = QtWidgets.QTextCharFormat()
         keywordFormat.setForeground(self.color_1)
         words = ["procedure", "table"]
         keywordPatterns = ["\\bchar\\b", "\\bclass\\b", "\\bconst\\b",
@@ -158,27 +158,27 @@ class EELHighlighter(QtGui.QSyntaxHighlighter):
         self.highlightingRules += [(QtCore.QRegExp(pattern), keywordFormat)
                 for pattern in keywordPatterns]
 
-        classFormat = QtGui.QTextCharFormat()
+        classFormat = QtWidgets.QTextCharFormat()
         classFormat.setForeground(self.color_4)
         self.highlightingRules.append((QtCore.QRegExp("\\bQ[A-Za-z]+\\b"),
                 classFormat))
 
-        numberFormat = QtGui.QTextCharFormat()
+        numberFormat = QtWidgets.QTextCharFormat()
         numberFormat.setForeground(self.color_5)
         numberPatterns = ['\\b[+-]?[0-9]+[lL]?\\b', '\\b[+-]?0[xX][0-9A-Fa-f]+[lL]?\\b',
         '\\b[+-]?[0-9]+(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?\\b', '\\btrue\\b', '\\bfalse\\b']
         self.highlightingRules += [(QtCore.QRegExp(pattern), numberFormat)
                 for pattern in numberPatterns]
 
-        singleLineCommentFormat = QtGui.QTextCharFormat()
+        singleLineCommentFormat = QtWidgets.QTextCharFormat()
         singleLineCommentFormat.setForeground(self.color_2)
         self.highlightingRules.append((QtCore.QRegExp("//[^\n]*"),
                 singleLineCommentFormat))
 
-        self.multiLineCommentFormat = QtGui.QTextCharFormat()
+        self.multiLineCommentFormat = QtWidgets.QTextCharFormat()
         self.multiLineCommentFormat.setForeground(self.color_2)
 
-        quotationFormat = QtGui.QTextCharFormat()
+        quotationFormat = QtWidgets.QTextCharFormat()
         quotationFormat.setForeground(self.color_3)
         self.highlightingRules.append((QtCore.QRegExp("\".*\""),
                 quotationFormat))
@@ -186,7 +186,7 @@ class EELHighlighter(QtGui.QSyntaxHighlighter):
         self.highlightingRules.append((QtCore.QRegExp("<.*>"),
                 quotationFormat))
 
-        functionFormat = QtGui.QTextCharFormat()
+        functionFormat = QtWidgets.QTextCharFormat()
         functionFormat.setForeground(self.color_1)
         self.highlightingRules.append((QtCore.QRegExp("\\b[A-Za-z0-9_]+(?=\\()"),
                 functionFormat))
@@ -232,7 +232,7 @@ def parseObject(text):
         string += "\n///"+event+" - END\n\n"
     return string
 
-class ScriptEditor(QtGui.QDialog):
+class ScriptEditor(QtWidgets.QDialog):
     def __init__(self, main, name, file_path):
         super(ScriptEditor, self).__init__(main)
         self.main = main
@@ -249,20 +249,20 @@ class ScriptEditor(QtGui.QDialog):
         else:
         	img_path=os.path.join('images')
 
-        saveAction = QtGui.QAction(QtGui.QIcon(os.path.join(img_path, 'save.png')), 'Save', self)
+        saveAction = QtWidgets.QAction(QtGui.QIcon(os.path.join(img_path, 'save.png')), 'Save', self)
         saveAction.setShortcut('Ctrl+S')
         saveAction.triggered.connect(self.save_file)
 
-        importAction = QtGui.QAction(QtGui.QIcon(os.path.join(img_path, 'open.png')), 'Import', self)
+        importAction = QtWidgets.QAction(QtGui.QIcon(os.path.join(img_path, 'open.png')), 'Import', self)
         importAction.triggered.connect(self.import_file)
 
-        tabAction = QtGui.QAction(QtGui.QIcon(os.path.join(img_path, 'open.png')), 'Tab', self)
+        tabAction = QtWidgets.QAction(QtGui.QIcon(os.path.join(img_path, 'open.png')), 'Tab', self)
         tabAction.triggered.connect(self.handleTest)
 
-        fontAction = QtGui.QAction(QtGui.QIcon(os.path.join(img_path, 'font.png')), 'Font', self)
+        fontAction = QtWidgets.QAction(QtGui.QIcon(os.path.join(img_path, 'font.png')), 'Font', self)
         fontAction.triggered.connect(self.fontChange)
 
-        self.toolbar = QtGui.QToolBar('Script Toolbar')
+        self.toolbar = QtWidgets.QToolBar('Script Toolbar')
         self.toolbar.setIconSize(QtCore.QSize(16, 16))
         self.toolbar.addAction(saveAction)
         self.toolbar.addAction(importAction)
@@ -275,18 +275,18 @@ class ScriptEditor(QtGui.QDialog):
         self.font.setFixedPitch(True)
         self.font.setPointSize(int(13))
 
-        self.ContainerGrid = QtGui.QGridLayout(self)
+        self.ContainerGrid = QtWidgets.QGridLayout(self)
         self.ContainerGrid.setMargin (0)
         self.ContainerGrid.setSpacing(0)
 
-        self.textedit = QtGui.QTextEdit()
+        self.textedit = QtWidgets.QTextEdit()
         self.textedit.setTabStopWidth(40)
         self.textedit.insertPlainText(self.text)
-        self.textedit.moveCursor(QtGui.QTextCursor.Start)
+        self.textedit.moveCursor(QtWidgets.QTextCursor.Start)
         self.textedit.setLineWrapMode(0)
         self.textedit.setFont(self.font)
 
-        self.linenumbers=QtGui.QTextEdit()
+        self.linenumbers=QtWidgets.QTextEdit()
         numbers= 999
         for number in range(numbers):
             self.linenumbers.insertPlainText(str(number+1)+'\n')
@@ -298,12 +298,12 @@ class ScriptEditor(QtGui.QDialog):
             self.textedit.verticalScrollBar().value)
         self.linenumbers.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.linenumbers.setReadOnly (True)
-        self.linenumbers.moveCursor(QtGui.QTextCursor.Start)
+        self.linenumbers.moveCursor(QtWidgets.QTextCursor.Start)
         self.linenumbers.setStyleSheet("color:rgb(117, 113, 94)")
-        self.linenumbers.setTextColor(QtGui.QColor(117, 113, 94 ))
+        self.linenumbers.setTextColor(QtWidgets.QColor(117, 113, 94 ))
 
-        self.widget = QtGui.QWidget()
-        self.layout=QtGui.QHBoxLayout(self.widget)
+        self.widget = QtWidgets.QWidget()
+        self.layout=QtWidgets.QHBoxLayout(self.widget)
         self.layout.addWidget(self.linenumbers)
         self.layout.addWidget(self.textedit)
         self.layout.setContentsMargins(0,0,0,0)
@@ -357,7 +357,7 @@ class ScriptEditor(QtGui.QDialog):
           json.dump(self.data, outfile)
 
     def import_file(self):
-        target = str(QtGui.QFileDialog.getOpenFileName(self, "Select File"))
+        target = str(QtWidgets.QFileDialog.getOpenFileName(self, "Select File"))
         with open(target, 'r') as f:
             self.textedit.setText(f.read())
         self.main.statusBar().showMessage(str(target)+' Imported!', 2000)
@@ -370,14 +370,14 @@ class ScriptEditor(QtGui.QDialog):
     def closeEvent(self, event):
             del self.main.window_index[self.title]
 
-class Editor(QtGui.QMainWindow):
+class Editor(QtWidgets.QMainWindow):
     def __init__(self):
         super(Editor, self).__init__()
         target="none"
         pathtofile="scripteditor.py"
 
-        self.ShowFrame = QtGui.QFrame()
-        self.showlayout = QtGui.QGridLayout()
+        self.ShowFrame = QtWidgets.QFrame()
+        self.showlayout = QtWidgets.QGridLayout()
         self.showlayout.setMargin(0)
 
         self.textedit = ScriptEditor(self, target, pathtofile)
@@ -390,12 +390,12 @@ class Editor(QtGui.QMainWindow):
         self.resize(640, 480)
 
 if __name__ == "__main__":
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     f = open('../themes/default.css')
     style = f.read()
     f.close()
     app.setStyleSheet(style)
-    app.setStyle(QtGui.QStyleFactory.create("plastique"))
+    app.setStyle(QtWidgets.QStyleFactory.create("plastique"))
     mainWin = Editor()
     mainWin.show()
     mainWin.raise_() #Making the window get focused on OSX
