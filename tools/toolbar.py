@@ -12,7 +12,7 @@ class ToolBar(QtWidgets.QToolBar):
         
         # func, img, title, hotkey
         funcs = [
-            [self.open, 'stellar_1.png', 'Stellar', False], 
+            [self.open, 'Astral_1.png', 'Astral', False], 
             [self.open, 'open.png', 'Open', False],
             [self.main.resourcelist.add_file, 'addfile.png', 'Add file', False],
             [self.main.resourcelist.add_directory, 'addfolder.png', 'Add folder', False],

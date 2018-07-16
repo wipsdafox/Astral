@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 from PyQt5 import QtCore, QtWidgets, QtGui
-#from PyQt5.QtGui import QFont
 import os, sys, shutil
 import json
 import imageviewer

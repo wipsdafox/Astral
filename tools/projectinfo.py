@@ -1,22 +1,22 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2012, 2014 Emilio Coppola
+# Copyright (C) 2012, 2014, 2018 Emilio Coppola, Johnny Stene
 #
-# This file is part of Stellar.
+# This file is part of Astral.
 #
-# Stellar is free software: you can redistribute it and/or modify
+# Astral is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Stellar is distributed in the hope that it will be useful,
+# Astral is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Stellar.  If not, see <http://www.gnu.org/licenses/>.
+# along with Astral.  If not, see <http://www.gnu.org/licenses/>.
 
 from PyQt5 import *
 import os, sys

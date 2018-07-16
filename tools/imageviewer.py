@@ -3,13 +3,11 @@
 
 from PyQt5 import QtCore, QtWidgets
 import os, sys
-#from PyQt5.QtWidgets import *
 
 if sys.version_info.major == 2:
     str = unicode    
 
 class ImageEditor(QtWidgets.QDialog):
-#class ImageEditor(QDialog):
     def __init__(self, main, name, filename):
         super(ImageEditor, self).__init__(main)
         self.main = main
@@ -137,7 +135,7 @@ class Editor(QtWidgets.QMainWindow):
     def __init__(self):
         super(Editor, self).__init__()
         target="none"
-        pathtofile="stellar.png"
+        pathtofile="Astral.png"
 
         self.ShowFrame = QtWidgets.QFrame()
         self.showlayout = QtWidgets.QGridLayout()
@@ -149,7 +147,7 @@ class Editor(QtWidgets.QMainWindow):
         self.ShowFrame.setLayout(self.showlayout)
 
         self.setCentralWidget(self.ShowFrame)
-        self.setWindowTitle("Stellar - ImageEditor")
+        self.setWindowTitle("Astral - ImageEditor")
         self.resize(640, 480)
 
 if __name__ == "__main__":

@@ -70,7 +70,7 @@ class CodeEditor(QtWidgets.QDialog):
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
-    mainWin = CodeEditor("C:\\Users\\Loremi\\Documents\\GitHub\\Stellar\\Stellar.py")
+    mainWin = CodeEditor("C:\\Users\\Loremi\\Documents\\GitHub\\Astral\\Astral.py")
     mainWin.show()
     mainWin.raise_() #Making the window get focused on OSX
     sys.exit(app.exec_())
